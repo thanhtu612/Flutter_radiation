@@ -24,11 +24,12 @@ class FirstRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('First screen')),
-      body: const Center(
-          child: ElevatedButton(
-        child: Text('Open second screen'),
-        onPressed: () {},
-      )),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Open second screen'),
+          onPressed: () {},
+        ),
+      ),
     );
   }
 }
@@ -38,6 +39,13 @@ class SecondRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(title: const Text('Second screen')),
+      body: Center(
+          child: ElevatedButton(
+        child: const Text('Back first screen'),
+        onPressed: () {},
+      )),
+    );
   }
 }
