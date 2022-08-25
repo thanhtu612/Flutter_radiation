@@ -1,3 +1,38 @@
+const express = require("express");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+
+const app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer, { /* options */ });
+
+io.on("connection", (socket) => {
+  // ...
+});
+const port = 3484
+server.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}/`);
+});
+
+// const express = require("express");
+// const { createServer } = require("http");
+// const { Server } = require("socket.io");
+
+// const app = express();
+// const httpServer = createServer(app);
+// const io = new Server(httpServer, { /* options */ });
+
+// const port = 3484
+
+// io.on("connection", (socket) => {
+//   // ...
+// });
+
+// server.listen(port, hostname, () => {
+//   console.log(`Server running at http://localhost:${port}/`);
+// });
+
+/*
 const express = require('express')
 const app = express()
 const port = 3000
@@ -9,6 +44,7 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+*/
 
 /*
 const http = require('http');
