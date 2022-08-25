@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {StationDetail.nameRoute: (context) => const StationDetail()},
       title: 'Flutter Demo',
       home: MyHomePage(),
     );
@@ -19,16 +20,16 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
   List<Station> stations = [
-    Station(01, 'Tram 01', 'public', true),
-    Station(02, 'Tram 02', 'public', true),
-    Station(03, 'Tram 03', 'private', false),
-    Station(04, 'Tram 04', 'private', false),
-    Station(05, 'Tram 05', 'private', false),
-    Station(06, 'Tram 06', 'public', true),
-    Station(07, 'Tram 07', 'public', true),
-    Station(08, 'Tram 08', 'private', false),
-    Station(09, 'Tram 09', 'private', false),
-    Station(10, 'Tram 10', 'private', false),
+    Station(01, 'Tram 01', 'public', true, 20.1),
+    Station(02, 'Tram 02', 'public', true, 20.2),
+    Station(03, 'Tram 03', 'private', false, 20.3),
+    Station(04, 'Tram 04', 'private', false, 20.4),
+    Station(05, 'Tram 05', 'private', false, 20.5),
+    Station(06, 'Tram 06', 'public', true, 20.6),
+    Station(07, 'Tram 07', 'public', true, 20.7),
+    Station(08, 'Tram 08', 'private', false, 20.8),
+    Station(09, 'Tram 09', 'private', false, 20.9),
+    Station(10, 'Tram 10', 'private', false, 30),
   ];
   @override
   Widget build(BuildContext context) {
@@ -53,6 +54,8 @@ class StationItem extends StatelessWidget {
     return InkWell(
         onTap: () {
           print('Clicked ${item.name}');
+          Navigator.pushNamed(context, StationDetail.nameRoute,
+              arguments: item);
         },
         splashColor: Colors.red,
         child: Card(
@@ -76,5 +79,58 @@ class Station {
   String name;
   String type;
   bool status;
-  Station(this.id, this.name, this.type, this.status);
+  double temp;
+  Station(this.id, this.name, this.type, this.status, this.temp);
+}
+
+class StationDetail extends StatelessWidget {
+  const StationDetail({Key? key}) : super(key: key);
+  static const nameRoute = '/Detail';
+
+  @override
+  Widget build(BuildContext context) {
+    final item = ModalRoute.of(context)!.settings.arguments as Station;
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: item.status ? Colors.green : Colors.black12,
+        title: Text(item.name),
+        /*actions: [
+          Padding(
+              padding: EdgeInsets.only(right: 40.0),
+              child: Icon(
+                Icons.online_prediction,
+                color: item.status ? Colors.green : Colors.black12,
+              ))
+        ],*/
+      ),
+      body: Center(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '${item.temp}',
+            style: TextStyle(
+              color: Colors.orange,
+              fontSize: 60,
+            ),
+          ),
+          Text(
+            'o',
+            style: TextStyle(
+              color: Colors.orange,
+              fontSize: 30,
+            ),
+          ),
+          Text(
+            'C',
+            style: TextStyle(
+              color: Colors.orange,
+              fontSize: 60,
+            ),
+          ),
+        ],
+      )),
+    );
+  }
 }
