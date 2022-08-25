@@ -27,7 +27,10 @@ class FirstRoute extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           child: const Text('Open second screen'),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SecondRoute()));
+          },
         ),
       ),
     );
@@ -44,7 +47,9 @@ class SecondRoute extends StatelessWidget {
       body: Center(
           child: ElevatedButton(
         child: const Text('Back first screen'),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
       )),
     );
   }
