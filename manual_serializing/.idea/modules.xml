@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/manual_serializing.iml" filepath="$PROJECT_DIR$/manual_serializing.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/manual_serializing_android.iml" filepath="$PROJECT_DIR$/android/manual_serializing_android.iml" />
-    </modules>
-  </component>
-</project>
